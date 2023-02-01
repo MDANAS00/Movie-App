@@ -10,6 +10,7 @@ export default class Movies extends Component {
       parr: [1],
       currPage: 1, // New State - To track the curr page of the front End
       movies: [], // To save the data of current page
+      favourites: [],
     };
   }
 
@@ -22,7 +23,6 @@ export default class Movies extends Component {
     this.setState({
       movies: [...data.results],
     });
-    console.log("Mountine Done");
   }
 
   changeMovies = async () => {
@@ -73,6 +73,26 @@ export default class Movies extends Component {
     }
   };
 
+  handleFavourites = (movie) => {
+    let oldData = JSON.parse(localStorage.getItem("movies-app") || "[]"); //Local storage me jo bhi data save hota hai vo as an Array hota hai...
+    if (this.state.favourites.includes(movie.id)) {
+      oldData = oldData.filter((m) => m.id != movie.id);
+    } else {
+      oldData.push(movie);
+    }
+    localStorage.setItem('movies-app',JSON.stringify(oldData))
+    console.log(oldData);
+    this.handleFavouritesState();
+  };
+
+  handleFavouritesState=()=>{
+    let oldData = JSON.parse(localStorage.getItem("movies-app") || "[]");
+    let temp = oldData.map((movie)=>movie.id);
+    this.setState({
+      favourites:[...temp]
+    })
+  }
+
   render() {
     // let movie = movies.results;
     return (
@@ -110,8 +130,10 @@ export default class Movies extends Component {
                     }}
                   >
                     {this.state.hover == movieObj.id && (
-                      <a className="btn btn-primary movies-button">
-                        Add to Favourites
+                      <a
+                        className="btn btn-primary movies-button"
+                        onClick={() => this.handleFavourites(movieObj)}
+                      >{this.state.favourites.includes(movieObj.id)?"Remove from Favourites":"Add to Favourites"}
                       </a>
                     )}
                   </div>
