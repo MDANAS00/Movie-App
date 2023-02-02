@@ -13,6 +13,7 @@ export default class Favourite extends Component {
       currPage: 1,
     };
   }
+  
   componentDidMount() {
     let genreids = {
       28: "Action",
@@ -163,12 +164,14 @@ export default class Favourite extends Component {
           <div className="main">
             <div className="row">
               <div className="col-lg-3 col-sm-12">
-                <ul class="list-group favourites-genres">
+                <ul class="list-group favourites-genres" >
                   {this.state.genres.map((genre) =>
                     this.state.currgen == genre ? (
-                      <li
+                      <li 
                         class="list-group-item"
                         style={{
+                          border:'outset',
+                          cursor:"pointer",
                           background: "#3f51b5",
                           color: "white",
                           fontWeight: "bold",
@@ -179,7 +182,7 @@ export default class Favourite extends Component {
                     ) : (
                       <li
                         class="list-group-item"
-                        style={{ background: "white", color: "#3f51b5" }}
+                        style={{border:'groove',cursor:"pointer",background: "white", color: "#3f51b5" }}
                         onClick={() => this.handleGenreChange(genre)}
                       >
                         {genre}
@@ -189,8 +192,8 @@ export default class Favourite extends Component {
                 </ul>
               </div>
               <div className="col-lg-9 favourites-table col-sm-12">
-                <div className="row">
-                  <input
+                <div className="row" >
+                  <input style={{border: "ridge"}}
                     type="text"
                     className="input-group-text col"
                     placeholder="Search"
@@ -199,7 +202,7 @@ export default class Favourite extends Component {
                       this.setState({ currText: e.target.value })
                     }
                   />
-                  <input
+                  <input style={{border: "ridge"}}
                     type="number"
                     className="input-group-text col"
                     placeholder="Rows Count"
@@ -208,7 +211,7 @@ export default class Favourite extends Component {
                   />
                 </div>
                 <div className="row">
-                  <table class="table">
+                  <table class="table" style={{border: "outset"}}>
                     <thead>
                       <tr>
                         <th scope="col">Title</th>
@@ -265,12 +268,12 @@ export default class Favourite extends Component {
                     </tbody>
                   </table>
                 </div>
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Page navigation example" >
                   <ul class="pagination">
                     {pagesarr.map((page) => (
                       <li class="page-item">
                         <a
-                          class="page-link"
+                          class="page-link" style={{cursor:"pointer",fontWeight:'bold',color:'black'}}
                           onClick={() => this.handlePageChange(page)}
                         >
                           {page}

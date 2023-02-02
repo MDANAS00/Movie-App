@@ -95,6 +95,15 @@ export default class Movies extends Component {
 
   render() {
     // let movie = movies.results;
+    const myStyle={
+      backgroundImage: 
+"url('https://media.geeksforgeeks.org/wp-content/uploads/rk.png')",
+      height:'100vh',
+      marginTop:'-70px',
+      fontSize:'50px',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+  };
     return (
       <>
         {this.state.movies.length == 0 ? (
@@ -103,9 +112,9 @@ export default class Movies extends Component {
           </div>
         ) : (
           <div>
-            <h3 className="text-center">
-              <strong>Trending</strong>
-            </h3>
+            <h2 className="text-center">
+              <strong style={{fontFamily:'Serif',}}>TRENDING</strong>
+            </h2>
             <div className="movies-list">
               {this.state.movies.map((movieObj) => (
                 <div
@@ -140,18 +149,18 @@ export default class Movies extends Component {
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center"}}>
               <nav aria-label="...">
                 <ul class="pagination">
                   <li class="page-item">
-                    <a class="page-link" onClick={this.handleLeft}>
+                    <a class="page-link" style={{cursor:"pointer",fontWeight:'bold',color:'black'}} onClick={this.handleLeft}>
                       Previous
                     </a>
                   </li>
                   {this.state.parr.map((value) => (
                     <li class="page-item" aria-current="page">
                       <a
-                        class="page-link"
+                        class="page-link" style={{cursor:"pointer",fontWeight:'bold',color:'black'}}
                         onClick={() => this.handleClick(value)}
                       >
                         {value}
@@ -159,7 +168,7 @@ export default class Movies extends Component {
                     </li> // We cannot direct call the function in onClick so we have to send the function definition
                   ))}
                   <li class="page-item">
-                    <a class="page-link" onClick={this.handleRight}>
+                    <a class="page-link" style={{cursor:"pointer",fontWeight:'bold',color:'black'}} onClick={this.handleRight}>
                       Next
                     </a>
                   </li>

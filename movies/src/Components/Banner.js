@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 export default class Banner extends Component {
   render() {
-    let movie = movies.results[1];
+    let movie = movies.results[5];
     return (
       <>
         {movie === "" ? (
